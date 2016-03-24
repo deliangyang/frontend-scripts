@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     scp = require('gulp-scp2'),
     watch = require('gulp-watch'),
     gutil = require('gulp-util'),
+    replace = require('gulp-replace'),
     livereload = require('gulp-livereload');
 
 gulp.task('less', function() {
@@ -32,6 +33,9 @@ gulp.task('watch', function() {
 // })
 // 
 
+/**
+ *  上传文件到服务器
+ */
 gulp.task('upload', function() {
     return gulp.src('*')
             .pipe(scp({
@@ -51,6 +55,9 @@ gulp.task('upload', function() {
 });
 
 
+/**
+ *  文档检测，上传文件至服务器
+ */
 gulp.task('watch', function() {
     return gulp.watch('*', function(event) {
         gulp.src(event.path)
@@ -69,6 +76,15 @@ gulp.task('watch', function() {
                 console.log(err);
             });
     });
+});
+
+/**
+ *  文档替换
+ */
+gulp.task('replace', function() {
+    return gulp.src(['add.js'])
+            .pipe(replace('module\.exports', 'module.exports'))
+            .pipe(gulp.dest('build/'));
 });
 
 

@@ -21,6 +21,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "express": "^4.13.4",
+    "gulp-replace": "^0.5.4",
     "gulp-scp": "0.0.3",
     "gulp-scp2": "^0.2.0",
     "gulp-watch": "^4.3.5",
